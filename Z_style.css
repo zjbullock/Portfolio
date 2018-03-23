@@ -1,0 +1,30 @@
+		.center{
+			text-align: center;
+		}
+		
+		.right{
+			text-align: right;
+		}
+		
+		.left{
+			text-align: left;
+		}
+		
+		.white-text{
+		color: white;
+		}
+		
+		.lobster-text{
+			font-family: 'Lobster', serif;
+			font-size: 48px;
+			border: 10px solid #D64343;
+		}
+		
+		ul{
+			font-size: 24px;
+			color: #D64343;
+		}
+
+		body{
+			background-color: #312D2D;
+		}
