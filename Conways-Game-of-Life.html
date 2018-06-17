@@ -1,24 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="https://maxcdn.boostrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="Z_style.css">
+    <link rel="stylesheet" href="Conways-Game-of-Life.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+
 
 
 
 
 </head>
-<body>
+<body class="theme">
 <div>
-<a href="Front End Practice.html">Back to Main Page</a>
+    <h1 style="text-align: center">Conway's Game of Life</h1>
 
-    <div id="app">
-        {{message}}
+
+
+    <div>
+       <canvas id="conway" width="500" height="500">
+           <script type="text/javascript" src="Conways-Game-of-Life.js"></script>
+       </canvas>
     </div>
-<script src="Conways-Game-of-Life.js"></script>
+
+    <br>
+    <div id="controls">
+        <div id="year"> Year(s): <span>0</span></div>
+
+        <div id="buttons">
+            <button id="start" type="button">Start</button>
+            <button id="step" type="button">Step</button>
+            <button id="stop" type="button">Stop</button>
+            <button id="clear" type="button">Clear</button>
+            <button onclick ="Randomize()" id="rand" type="button">Random</button>
+        </div>
+    </div>
+
+
+<a href="index.html">Back to Main Page</a>
+
+
 
 </div>
 

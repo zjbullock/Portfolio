@@ -1,5 +1,7 @@
-.background{
+.theme{
 	background-color: #312D2D;
+    color: white;
+    text-align: center;
 }
 
 hr{
@@ -14,7 +16,7 @@ hr{
 }
 
 .jumbotron{
-	background: contain;
+	background: content-box;
 }
 
 .display-1{
