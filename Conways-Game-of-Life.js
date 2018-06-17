@@ -6,6 +6,9 @@
     var gridWidth = parseInt(cnv.width, 10) / 10;
     var gridResolution = 10;
 
+    var running;
+
+
     var grid;
 
     function makeBoard(columns, rows) {
@@ -19,6 +22,98 @@
         return arr;
 
     }
+
+    function stopConway(){
+
+    }
+
+    function runConway(){
+      var newBoard = makeBoard(gridWidth, gridHeight);
+      var neighbors;
+      for(var i=0; i<grid.length; i++){
+        for(var j=0; j<grid[i].length; j++){
+          neighbors=countNeighbors(grid,i,j);
+
+          if(grid[i][j]==true){
+          if(neighbors==3 || neighbors==2){
+            newBoard[i][j]=true;
+          }
+          else if(neighbors>3){
+            newBoard[i][j]=false;
+          }
+          else if(neighbors<2){
+            newBoard[i][j]=false;
+          }
+        }
+        else if(grid[i][j]==false){
+          if(neighbors==3){
+            newBoard[i][j]=true;
+          }
+          else{
+            newBoard[i][j]=false;
+          }
+        }
+
+
+        }
+      }
+      grid=newBoard;
+      drawBoard(gridWidth, gridHeight, grid);
+      increaseYear();
+
+}
+
+    function increaseYear(){
+      document.getElementById('year').textContent++;
+
+    }
+
+    function countNeighbors(board,i, j){
+      var neighbors=0;
+
+      if(i>0){
+
+      if(board[i-1][j-1]==true && j>0)
+      {
+        neighbors++;
+      }
+
+      if(board[i-1][j]==true){
+        neighbors++;
+      }
+
+      if(board[i-1][j+1]==true && j<gridHeight-1){
+        neighbors++;
+      }
+    }
+
+
+
+      if(board[i][j-1]==true && j>0){
+        neighbors++;
+      }
+      if(board[i][j+1]==true && j<gridHeight-1){
+        neighbors++;
+      }
+
+if(i<gridWidth-1){
+      if(board[i+1][j-1]==true && j>0){
+        neighbors++;
+      }
+      if(board[i+1][j]==true){
+        neighbors++;
+      }
+      if(board[i+1][j+1]==true && j<gridHeight-1){
+        neighbors++;
+      }
+}
+
+      return neighbors;
+    }
+
+
+
+
 
     function drawBoard(columns, rows, board) {
 
@@ -41,6 +136,7 @@
     }
 
     function Randomize(){
+      document.getElementById('year').textContent=0;
         fillBoard(grid);
         drawBoard(gridWidth, gridHeight, grid);
     }
@@ -50,7 +146,7 @@
 
                 for (var j = 0; j < gridHeight; j++) {
                  var weight = getRandomInt(1, 11);
-                     if (weight < 4) {
+                     if (weight < 3) {
                          board[i][j] = true;
                      }
                     else {
@@ -66,6 +162,14 @@
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min)) + min; //The maximum is exclusive and the minimum is inclusive
     }
+
+  function start(){
+    running=setInterval(runConway, 200);
+  }
+
+  function stop(){
+    clearInterval(running);
+  }
 
     /*Creates a grid of the using the makeBoard function.
     It then generates a Random integer that is either a 0 or a 1.

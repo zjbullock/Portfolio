@@ -26,14 +26,16 @@
 
     <br>
     <div id="controls">
-        <div id="year"> Year(s): <span>0</span></div>
+
+        <h6>Years: </h6>
+        <div id="year">0</div>
 
         <div id="buttons">
-            <button id="start" type="button">Start</button>
-            <button id="step" type="button">Step</button>
-            <button id="stop" type="button">Stop</button>
+            <button onclick="start()" id="start" type="button">Start</button>
+            <button onclick="runConway()" id="step" type="button">Step</button>
+            <button onclick="stop()" id="stop" type="button">Stop</button>
             <button id="clear" type="button">Clear</button>
-            <button onclick ="Randomize()" id="rand" type="button">Random</button>
+            <button onclick="Randomize()" id="rand" type="button">Random</button>
         </div>
     </div>
 
