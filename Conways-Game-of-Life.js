@@ -2,6 +2,7 @@
     var cnv = document.getElementById("conway");
     var ctx = cnv.getContext("2d");
 
+
     var gridHeight = parseInt(cnv.height, 10) / 10;
     var gridWidth = parseInt(cnv.width, 10) / 10;
     var gridResolution = 10;
@@ -170,11 +171,55 @@
         }
   }
 
+  var gliders=false;
+    var cornerGliders;
+
+  function toggleGliders(){
+      if(gliders == false && rungame==true){
+          cornerGliders = setInterval(runGliders, 5000);
+          gliders = true;
+      }
+      else{
+          gliders=false;
+          clearInterval(cornerGliders);
+      }
+
+  }
+
+  function runGliders(){
+        grid[1][0]=true;
+        grid[2][1]=true;
+        grid[2][2]=true;
+        grid[1][2]=true;
+        grid[0][2]=true;
+
+        grid[gridWidth-2][0]=true;
+        grid[gridWidth-3][1]=true;
+        grid[gridWidth-3][2]=true;
+        grid[gridWidth-2][2]=true;
+        grid[gridWidth-1][2]=true;
+
+        grid[0][gridHeight-3]=true;
+        grid[1][gridHeight-3]=true;
+        grid[2][gridHeight-3]=true;
+        grid[2][gridHeight-2]=true;
+        grid[1][gridHeight-1]=true;
+
+        grid[gridWidth-2][gridHeight-1]=true;
+        grid[gridWidth-3][gridHeight-2]=true;
+        grid[gridWidth-3][gridHeight-3]=true;
+        grid[gridWidth-2][gridHeight-3]=true;
+        grid[gridWidth-1][gridHeight-3]=true;
+
+        drawBoard(gridWidth,gridHeight,grid);
+  }
+
   function stop(){
         if(rungame==true) {
             clearInterval(running);
             rungame=false;
         }
+        toggleGliders();
   }
 
   function clearBoard(){
@@ -197,6 +242,45 @@
       drawBoard(gridWidth, gridHeight, grid);
   }
 
+  function handleClick(e){
+        var pos = getMousePos (cnv, e);
+        posx = roundTen(parseInt(pos.x, 10))/10;
+        posy = roundTen(parseInt(pos.y, 10))/10;
+
+        //console.log("x: "+posx +" y: "+posy);
+
+       if(grid[posx][posy]==true){
+           grid[posx][posy]=false;
+       }
+       else if(grid[posx][posy]==false){
+           grid[posx][posy]=true;
+       }
+
+       drawBoard(gridWidth, gridHeight, grid);
+  }
+
+  function roundTen(num){
+        if(num==0) {
+            num=Math.floor((num) / 10) * 10;
+            return num;
+        }
+        else{
+            num=Math.floor((num+1)/10)*10;
+            return num;
+        }
+
+  }
+
+  function getMousePos(c, evt){
+        var rect = c.getBoundingClientRect();
+        return{
+            x: evt.clientX - rect.left,
+            y: evt.clientY - rect.top};
+
+  }
+
+
+
     /*Creates a grid of the using the makeBoard function.
     It then generates a Random integer that is either a 0 or a 1.
      */
@@ -204,6 +288,13 @@
 
         grid = makeBoard(gridWidth, gridHeight);
 
+        for (var i = 0; i < gridWidth; i++) {
+            for (var j = 0; j < gridHeight; j++) {
+              grid[i][j] = false;
+            }
+        }
+
         drawBoard(gridWidth, gridHeight, grid);
 
+        cnv.addEventListener('click', handleClick);
     }
