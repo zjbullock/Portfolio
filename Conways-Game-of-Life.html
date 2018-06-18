@@ -19,7 +19,7 @@
 
 
     <div>
-       <canvas id="conway" width="500" height="500">
+       <canvas id="conway" width="500" height="500" style="border:10px solid #D64343;">
            <script type="text/javascript" src="Conways-Game-of-Life.js"></script>
        </canvas>
     </div>
@@ -27,15 +27,15 @@
     <br>
     <div id="controls">
 
-        <h6>Years: </h6>
+        <h6 id="yearText">Year(s): </h6>
         <div id="year">0</div>
 
         <div id="buttons">
-            <button onclick="start()" id="start" type="button">Start</button>
-            <button onclick="runConway()" id="step" type="button">Step</button>
-            <button onclick="stop()" id="stop" type="button">Stop</button>
-            <button id="clear" type="button">Clear</button>
-            <button onclick="Randomize()" id="rand" type="button">Random</button>
+            <button class="Container" onclick="start()" id="start" type="button">Start Simulation</button>
+            <button class="Container" onclick="runConway()" id="step" type="button">Step 1 Year Forward</button>
+            <button class="Container" onclick="stop()" id="stop" type="button">Stop Simulation</button>
+            <button class="Container" onclick="clearBoard()" id="clear" type="button">Clear Board</button>
+            <button class="Container" onclick="Randomize()" id="rand" type="button">Randomize Board</button>
         </div>
     </div>
 

@@ -8,6 +8,7 @@
 
     var running;
 
+    var rungame=false;
 
     var grid;
 
@@ -71,20 +72,19 @@
     function countNeighbors(board,i, j){
       var neighbors=0;
 
-      if(i>0){
+        if(i>0){
 
-      if(board[i-1][j-1]==true && j>0)
-      {
-        neighbors++;
-      }
+        if(board[i-1][j-1]==true && j>0){
+            neighbors++;
+        }
 
-      if(board[i-1][j]==true){
-        neighbors++;
-      }
+        if(board[i-1][j]==true){
+            neighbors++;
+        }
 
-      if(board[i-1][j+1]==true && j<gridHeight-1){
-        neighbors++;
-      }
+        if(board[i-1][j+1]==true && j<gridHeight-1){
+            neighbors++;
+        }
     }
 
 
@@ -96,17 +96,17 @@
         neighbors++;
       }
 
-if(i<gridWidth-1){
-      if(board[i+1][j-1]==true && j>0){
+      if(i<gridWidth-1){
+        if(board[i+1][j-1]==true && j>0){
+            neighbors++;
+        }
+        if(board[i+1][j]==true){
+            neighbors++;
+        }
+        if(board[i+1][j+1]==true && j<gridHeight-1){
         neighbors++;
+        }
       }
-      if(board[i+1][j]==true){
-        neighbors++;
-      }
-      if(board[i+1][j+1]==true && j<gridHeight-1){
-        neighbors++;
-      }
-}
 
       return neighbors;
     }
@@ -146,7 +146,7 @@ if(i<gridWidth-1){
 
                 for (var j = 0; j < gridHeight; j++) {
                  var weight = getRandomInt(1, 11);
-                     if (weight < 3) {
+                     if (weight < 4) {
                          board[i][j] = true;
                      }
                     else {
@@ -164,11 +164,37 @@ if(i<gridWidth-1){
     }
 
   function start(){
-    running=setInterval(runConway, 200);
+        if(rungame==false) {
+            running = setInterval(runConway, 100);
+            rungame=true;
+        }
   }
 
   function stop(){
-    clearInterval(running);
+        if(rungame==true) {
+            clearInterval(running);
+            rungame=false;
+        }
+  }
+
+  function clearBoard(){
+        stop();
+      document.getElementById('year').textContent=0;
+        var newBoard=makeBoard(gridWidth,gridHeight);
+
+      for (var i = 0; i < gridWidth; i++) {
+
+          for (var j = 0; j < gridHeight; j++) {
+
+                  newBoard[i][j] = false;
+
+
+          }
+      }
+
+
+      grid = newBoard;
+      drawBoard(gridWidth, gridHeight, grid);
   }
 
     /*Creates a grid of the using the makeBoard function.
@@ -177,8 +203,6 @@ if(i<gridWidth-1){
     window.onload=function init() {
 
         grid = makeBoard(gridWidth, gridHeight);
-
-        fillBoard(grid);
 
         drawBoard(gridWidth, gridHeight, grid);
 
