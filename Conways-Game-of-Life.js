@@ -13,6 +13,7 @@
 
     var grid;
 
+    /*Creates the two dimensional array used for the board*/
     function makeBoard(columns, rows) {
 
         var arr = new Array(columns);
@@ -22,10 +23,6 @@
 
         }
         return arr;
-
-    }
-
-    function stopConway(){
 
     }
 
@@ -67,9 +64,9 @@
 
     function increaseYear(){
       document.getElementById('year').textContent++;
-
     }
 
+    /*This function simply counts the number of neighbors surrounding a cell on the board*/
     function countNeighbors(board,i, j){
       var neighbors=0;
 
@@ -86,16 +83,14 @@
         if(board[i-1][j+1]==true && j<gridHeight-1){
             neighbors++;
         }
-    }
+        }
 
-
-
-      if(board[i][j-1]==true && j>0){
-        neighbors++;
-      }
-      if(board[i][j+1]==true && j<gridHeight-1){
-        neighbors++;
-      }
+        if(board[i][j-1]==true && j>0){
+            neighbors++;
+        }
+        if(board[i][j+1]==true && j<gridHeight-1){
+            neighbors++;
+        }
 
       if(i<gridWidth-1){
         if(board[i+1][j-1]==true && j>0){
@@ -113,9 +108,7 @@
     }
 
 
-
-
-
+/*This function is responsible for managing the visuals of the board*/
     function drawBoard(columns, rows, board) {
 
         for (var i = 0; i < columns; i++) {
@@ -136,12 +129,15 @@
 
     }
 
+    /*This function simply calls the function randomly generate a board, reset the Year counter to 0, and update the board visually.*/
     function Randomize(){
       document.getElementById('year').textContent=0;
         fillBoard(grid);
         drawBoard(gridWidth, gridHeight, grid);
     }
 
+    /*This function randomly fills the board with true/false values.
+    * I chose to add weights to decrease the amount of randomly generated live cells.*/
     function fillBoard(board){
             for (var i = 0; i < gridWidth; i++) {
 
@@ -172,10 +168,12 @@
   }
 
   var gliders=false;
-    var cornerGliders;
+
+  var cornerGliders;
 
   function toggleGliders(){
       if(gliders == false && rungame==true){
+          runGliders();
           cornerGliders = setInterval(runGliders, 5000);
           gliders = true;
       }
@@ -242,12 +240,13 @@
       drawBoard(gridWidth, gridHeight, grid);
   }
 
+  /*This function grabs the coordinates of where the user clicked on the canvas, and calculates the position of the click on the grid.
+  * It then alters the value at that point to be either true or false, depending on what the previous value was.*/
   function handleClick(e){
         var pos = getMousePos (cnv, e);
         posx = roundTen(parseInt(pos.x, 10))/10;
         posy = roundTen(parseInt(pos.y, 10))/10;
 
-        //console.log("x: "+posx +" y: "+posy);
 
        if(grid[posx][posy]==true){
            grid[posx][posy]=false;
@@ -259,18 +258,13 @@
        drawBoard(gridWidth, gridHeight, grid);
   }
 
+/* This function is responsible for getting numbers in the closest 10's place the actual pixels clicks in terms of*/
   function roundTen(num){
-        if(num==0) {
-            num=Math.floor((num) / 10) * 10;
-            return num;
-        }
-        else{
-            num=Math.floor((num+1)/10)*10;
-            return num;
-        }
-
+      return num=Math.floor((num)/10)*10;
   }
 
+
+  /*This function simply grabs the position of the mouse to be used in the function handleClick.*/
   function getMousePos(c, evt){
         var rect = c.getBoundingClientRect();
         return{
@@ -297,4 +291,6 @@
         drawBoard(gridWidth, gridHeight, grid);
 
         cnv.addEventListener('click', handleClick);
+
+
     }
