@@ -19,6 +19,28 @@ hr{
 	background: content-box;
 }
 
+#mobile{
+	display: none;
+}
+
 .display-1{
 	overflow: hidden;
 }
+
+
+@media only screen and (max-width: 600px){
+	.display-1{
+		display: none;
+	}
+
+	#mobile{
+		display:inline-block;
+		overflow: hidden;
+	}
+}
+
+
+
+
+
+
