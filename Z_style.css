@@ -45,6 +45,10 @@ a:active{
 	color: #D64343;
 }
 
+#top{
+	color: white !important;
+}
+
 #mobile{
 	display: none;
 }
