@@ -4,6 +4,16 @@
     text-align: center;
 }
 
+.shadow-box{
+  box-shadow:  0px 5px rgba(0,0,0,0.19),  0px 8px rgba(0,0,0,0.23);
+}
+
+.text-shadow{
+  text-shadow: 4px 4px #000000;
+}
+
+
+
 hr{
 	border-top: 3px solid;
 
@@ -17,6 +27,22 @@ hr{
 
 .jumbotron{
 	background: content-box;
+}
+
+a:link{
+  color: white;
+}
+
+a:visited{
+	color: white;
+}
+
+a:hover{
+  color: #D64343 !important;
+}
+
+a:active{
+	color: #D64343;
 }
 
 #mobile{
@@ -38,9 +64,4 @@ hr{
 		overflow: hidden;
 	}
 }
-
-
-
-
-
 
