@@ -5,11 +5,12 @@
 }
 
 .shadow-box{
-  box-shadow:  0px 5px rgba(0,0,0,0.19),  0px 8px rgba(0,0,0,0.23);
+  box-shadow:  8px 8px rgba(0,0,0,0.19),  8px 8px rgba(0,0,0,0.23);
+	padding: 10px;
 }
 
 .text-shadow{
-  text-shadow: 4px 4px #000000;
+  text-shadow: 4px 4px 2px black;
 }
 
 
@@ -67,5 +68,11 @@ a:active{
 		display:inline-block;
 		overflow: hidden;
 	}
+
+	.shadow-box{
+		box-shadow: none;
+	}
+
+
 }
 
